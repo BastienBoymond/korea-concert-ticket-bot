@@ -1,0 +1,42 @@
+{
+    "manifest_version": 3,
+    "name": "EasyConcertKorea",
+    "description": "Extension to get easily the concert on korean website",
+    "version": "1.0",
+    "permissions": [
+        "storage"
+    ],
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "run_at": "document_start",
+            "js": ["scripts/injector.js"]
+        },
+        {
+            "matches": [
+                "http://ticket.yes24.com/Pages/English/",
+                "http://ticket.yes24.com/Pages/English/*",
+                "http://ticket.yes24.com/English/*",
+                "http://ticket.yes24.com/English"
+            ],
+            "js": ["scripts/yes24.js"]
+        },
+        {
+            "matches": [
+                "https://tkglobal.melon.com/reservation/popup/onestop.htm/*",
+                "https://tkglobal.melon.com/reservation/popup/onestop.htm"
+            ],
+            "js": ["scripts/melonticket.js"],
+            "run_at":"document_end"
+        }
+    ],
+    "action": {
+        "default_popup": "popup/mainPage/index.html",
+        "default_icon": "assets/logo_easy_korea_concert.png"
+    },
+    "icons": { 
+        "16": "assets/logo_easy_korea_concert.png",
+        "48": "assets/logo_easy_korea_concert.png",
+        "128": "assets/logo_easy_korea_concert.png"
+      }
+}
