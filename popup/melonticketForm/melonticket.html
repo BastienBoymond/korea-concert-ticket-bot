@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ... (existing head content) ... -->
+    <link rel="stylesheet" href="../mainPage/style.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../form.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="back-arrow close">
+        <i class="fas fa-angle-left close"></i>
+    </div>
+    <form>
+        <fieldset>
+            <legend>Concert Information</legend>
+            <div class="form-row">
+                <label for="concert-id">Concert ID:</label>
+                <input type="text" id="concert-id" name="concert-id" placeholder="Enter Concert ID">
+            </div>
+            <div class="form-row">
+                <label for="concert">Number of Places:</label>
+                <select name="concert" id="concert">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+            <div class="form-row">
+                <label for="date">Date:  <span class="note">if there is many</span></label>
+                <input type="date" id="date" name="date">
+            </div>
+            <div class="form-row">
+                <label for="time">Time:  <span class="note">if there is many</span></label>
+                <input type="time" id="time" name="time">
+            </div>
+            <div class="form-row">
+                <label for="section">Preferred Sections:</label>
+                <input type="text" id="section" name="section" placeholder="Enter Sections (e.g., A, B, C)">
+            </div>
+        </fieldset>
+        
+        <div class="button-row">
+            <button class="button-concert" id="submit" type="submit">Submit</button>
+        </div>
+    </form>
+</body>
+<script type="module" src="script.js"></script>
+</html>

@@ -1,0 +1,11 @@
+.back-arrow {
+    position: fixed;
+    top: 10px;
+    left: 20px;
+    font-size: 24px;
+    color: #2f056b;
+    cursor: pointer;
+    border-radius: 25%; /* Make it round */
+    background-color: #fff; /* Background color to make the circle visible */
+    padding: 8px; /* Adjust padding as needed */
+}
