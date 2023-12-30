@@ -15,25 +15,29 @@
         <fieldset>
             <legend>Concert Information</legend>
             <div class="form-row">
+                <label for="concert-name">Concert Name:</label>
+                <input type="text" id="concert-name" name="concert-name" placeholder="Enter Concert Name">
+            </div>
+            <div class="form-row">
                 <label for="concert-id">Concert ID:</label>
                 <input type="text" id="concert-id" name="concert-id" placeholder="Enter Concert ID">
             </div>
             <div class="form-row">
-                <label for="concert">Number of Places:</label>
-                <select name="concert" id="concert">
+                <label for="nb-ticket">Number of Places:</label>
+                <select name="ticket" id="ticket">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
                 </select>
             </div>
-            <div class="form-row">
-                <label for="date">Date:  <span class="note">if there is many</span></label>
-                <input type="date" id="date" name="date">
-            </div>
-            <div class="form-row">
-                <label for="time">Time:  <span class="note">if there is many</span></label>
-                <input type="time" id="time" name="time">
+            <div class="form-row-half">
+                <div class="form-col">
+                    <input type="date" id="date" name="date">
+                </div>
+                <div class="form-col">
+                    <input type="time" id="time" name="time">
+                </div>
             </div>
             <div class="form-row">
                 <label for="section">Preferred Sections:</label>

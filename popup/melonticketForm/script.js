@@ -1,3 +1,5 @@
+import { get_stored_value, store_value } from "../module/storage.js";
+
 window.onclick = function(event) {
     const target = event.target;
     if (target.classList.contains("close")) {
@@ -6,20 +8,23 @@ window.onclick = function(event) {
 }
 
 
-document.addEventListener('DOMContentLoaded', function () {
-    // Wait for the DOM to be fully loaded
-
-    // Get the form element
+document.addEventListener('DOMContentLoaded', function  () {
     const form = document.querySelector('form');
 
-    // Add a submit event listener to the form
-    form.addEventListener('submit', function (event) {
-        // Prevent the default form submission behavior
+    form.addEventListener('submit', async function (event) {
         event.preventDefault();
 
-        // Log a message to the console when the submit button is clicked
-        console.log('Submit button clicked!');
-        
-        // Add additional code here if needed
+        let data = {};
+        const formData = new FormData(form);
+        for (const [key, value] of formData.entries()) {
+            data[key] = value;
+        }
+        data["section"] = data["section"].split(",");
+        data["platform"] = "melon";
+        let array = await get_stored_value("autoBooking") || [];
+        store_value(data["id"], data);
+        array.push(data);
+        store_value("autoBooking", array);
+        window.history.back();
     });
 });

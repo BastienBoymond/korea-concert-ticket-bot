@@ -66,4 +66,52 @@ a {
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    width: 100%;
+    overflow-y: auto; /* Enable vertical scrolling */
+    max-height: 300px; /* Set a max height for the container */
+}
+
+.booking-item {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    width: 80%;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    display: flex;
+    align-items: center; /* Align items vertically in the middle */
+    justify-content: space-between; /* Align items horizontally with space between them */
+    margin-bottom: 10px; /* Add margin-bottom to create space between items */
+}
+
+.booking-item:hover {
+    transform: scale(1.05);
+}
+
+.concert-info {
+    flex-grow: 1; /* Allow the concert info to take the remaining space */
+}
+
+.platform-image {
+    height: auto;
+    margin-left: 10px; /* Add margin to create space between the text and image */
+}
+
+.concert-name {
+    font-weight: bold;
+}
+
+.delete-button {
+    position: relative;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    color: red;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
 }
