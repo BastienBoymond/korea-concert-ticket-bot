@@ -23,6 +23,7 @@ function createConcertItem(booking, index) {
     deleteButton.classList.add("delete-button");
     deleteButton.innerHTML = "&#10006;"; // Cross symbol
     deleteButton.addEventListener("click", async() => {
+        event.stopPropagation(); // Prevent the click event from propagating
         await deleteConcertItem(index);
     });
 
@@ -84,7 +85,6 @@ function openBookingUrl(platform, concertId) {
             return;
     }
     
-    // Open the URL in a new tab/window
     window.open(url, "_blank");
 }
 

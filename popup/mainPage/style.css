@@ -106,12 +106,11 @@ a {
 }
 
 .delete-button {
-    position: relative;
-    top: 10px;
-    right: 10px;
+    height: 100%;
     font-size: 20px;
     color: red;
     cursor: pointer;
     border: none;
     background-color: transparent;
+    display: flex;
 }
