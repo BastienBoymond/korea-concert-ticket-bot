@@ -8,11 +8,6 @@
     ],
     "content_scripts": [
         {
-            "matches": ["<all_urls>"],
-            "run_at": "document_start",
-            "js": ["scripts/injector.js"]
-        },
-        {
             "matches": [
                 "http://ticket.yes24.com/Pages/English/",
                 "http://ticket.yes24.com/Pages/English/*",
@@ -26,7 +21,15 @@
                 "https://tkglobal.melon.com/reservation/popup/onestop.htm/*",
                 "https://tkglobal.melon.com/reservation/popup/onestop.htm"
             ],
-            "js": ["scripts/melonticket.js"],
+            "js": ["scripts/common/storage.js", "scripts/common/sleep.js", "scripts/melonticket/seat.js"],
+            "run_at":"document_end"
+        },
+        {
+            "matches": [
+                "https://tkglobal.melon.com/performance/index.htm*",
+                "https://tkglobal.melon.com/performance/index.htm"
+            ],
+            "js": ["scripts/common/hourToPm.js", "scripts/common/storage.js", "scripts/common/sleep.js", "scripts/melonticket/concert.js"],
             "run_at":"document_end"
         }
     ],

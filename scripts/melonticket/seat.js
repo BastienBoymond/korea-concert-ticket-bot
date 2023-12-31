@@ -1,6 +1,6 @@
 async function sleep(t) {
     return await new Promise(resolve => setTimeout(resolve, t));
-  }
+}
 
 function theFrame() {
     if (window._theFrameInstance == null) {
@@ -8,26 +8,35 @@ function theFrame() {
     }
   
     return window._theFrameInstance;
-  }
+}
 
-async function searchSeat() {
+function getConcertId() {
+    return document.getElementById("prodId").value;
+}
+
+function openEverySection() {
     let frame = theFrame();
-    await sleep(500);
-    console.log(frame.document);
     let section = frame.document.getElementsByClassName("seat_name");
     console.log(section);
     for (let i = 0; i < section.length; i++) {
-        console.log(section[i].parentElement);
-            section[i].parentElement.click();
+        section[i].parentElement.click();
     }
-    let area = frame.document.getElementsByClassName("area_tit");
-    console.log(area);
-    for (let i = 0; i < area.length; i++) {
-        console.log(i, area[i]);
-        if (area[i].innerHTML.includes("B")) {
-            area[i].parentElement.click();
+}
+
+function clickOnArea(area) {
+    let frame = theFrame();
+    let section = frame.document.getElementsByClassName("area_tit");
+    for (let i = 0; i < section.length; i++) {
+        console.log(section[i], area);
+        if (section[i].innerHTML.includes(area)) {
+            section[i].parentElement.click();
+            return;
         }
     }
+}
+
+async function findSeat() {
+    let frame = theFrame();
     let canvas = frame.document.getElementById("ez_canvas");
     let seat = canvas.getElementsByTagName("rect");
     console.log(seat);
@@ -39,10 +48,25 @@ async function searchSeat() {
         if (fillColor !== "#DDDDDD" && fillColor !== "none") {
             console.log("Rect with different fill color found:", seat[i]);
             var clickEvent = new Event('click', { bubbles: true });
+
             seat[i].dispatchEvent(clickEvent);
             frame.document.getElementById("nextTicketSelection").click();
             return;
         }
+    }
+    console.log("no Seat Found go next");
+}
+
+async function searchSeat() {
+    let concertId = getConcertId();
+    let data = await get_stored_value(concertId);
+    console.log(data);
+    await sleep(500);
+    for (sec of data.section) {
+        openEverySection();
+        clickOnArea(sec);
+        await findSeat();
+
     }
 }
 

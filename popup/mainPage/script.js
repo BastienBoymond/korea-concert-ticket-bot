@@ -2,6 +2,8 @@ import { get_stored_value, store_value } from "../module/storage.js";
 
 let loadAutoBooking = async () => {
     let autoBooking = await get_stored_value("autoBooking");
+    let test = await get_stored_value("209206");
+    console.log(test);
     if (!autoBooking || autoBooking.length < 1) {
         return (document.getElementById("list-booking").innerHTML =
             "No auto booking");

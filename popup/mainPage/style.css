@@ -97,8 +97,8 @@ a {
 }
 
 .platform-image {
-    height: auto;
     margin-left: 10px; /* Add margin to create space between the text and image */
+    width: 100px;
 }
 
 .concert-name {
@@ -113,4 +113,21 @@ a {
     border: none;
     background-color: transparent;
     display: flex;
+}
+
+.list-booking-container::-webkit-scrollbar {
+    width: 10px; /* Set the width of the scrollbar */
+}
+
+.list-booking-container::-webkit-scrollbar-track {
+    background-color: #ebe0f9; /* Track color */
+}
+
+.list-booking-container::-webkit-scrollbar-thumb {
+    background-color: #2f056b; /* Thumb color */
+    border-radius: 5px; /* Rounded corners for the thumb */
+}
+
+.list-booking-container::-webkit-scrollbar-thumb:hover {
+    background-color: #5438dc; /* Thumb color on hover */
 }
