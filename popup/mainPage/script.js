@@ -1,4 +1,4 @@
-import { get_stored_value, store_value, delete_value } from "../module/storage.js";
+import { get_stored_value, store_value } from "../module/storage.js";
 
 let loadAutoBooking = async () => {
     let autoBooking = await get_stored_value("autoBooking");
@@ -18,13 +18,15 @@ let loadAutoBooking = async () => {
 function createConcertItem(booking, index) {
     let div = document.createElement("div");
     div.classList.add("booking-item");
+    div.setAttribute("data-index", index);
 
     let deleteButton = document.createElement("button");
     deleteButton.classList.add("delete-button");
     deleteButton.innerHTML = "&#10006;"; // Cross symbol
-    deleteButton.addEventListener("click", async() => {
+    deleteButton.addEventListener("click", async(event) => {
         event.stopPropagation(); // Prevent the click event from propagating
-        await deleteConcertItem(index);
+        let dataIndex = event.currentTarget.parentNode.getAttribute("data-index");
+        await deleteConcertItem(dataIndex);
     });
 
     let concertInfo = document.createElement("div");
@@ -91,10 +93,24 @@ function openBookingUrl(platform, concertId) {
 async function deleteConcertItem(index) {
     let listContainer = document.getElementById("list-booking");
     let autoBooking = await get_stored_value("autoBooking");
+
+    // Remove the item from the array
     autoBooking.splice(index, 1);
+
+    // Update the stored values
     store_value("autoBooking", autoBooking);
-    listContainer.removeChild(listContainer.children[index]);
+
+    // Remove the corresponding DOM element
+    let deletedElement = listContainer.children[index];
+    listContainer.removeChild(deletedElement);
+
+    // Update indices of remaining DOM elements
+    for (let i = index; i < listContainer.children.length; i++) {
+        // Update data-index attribute if needed
+        listContainer.children[i].dataset.index = i;
+    }
 }
+
 
 function getPlatformImageSrc(platform) {
     switch (platform) {

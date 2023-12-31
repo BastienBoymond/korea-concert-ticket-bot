@@ -13,14 +13,15 @@ document.addEventListener('DOMContentLoaded', function  () {
 
     form.addEventListener('submit', async function (event) {
         event.preventDefault();
-
+        form.getElementsByTagName("button")[0].disabled = true;
+        
         let data = {};
         const formData = new FormData(form);
         for (const [key, value] of formData.entries()) {
             data[key] = value;
         }
         data["section"] = data["section"].split(",");
-        data["platform"] = "melon";
+        data["platform"] = form.getElementsByTagName("button")[0].id;
         let array = await get_stored_value("autoBooking") || [];
         store_value(data["id"], data);
         array.push(data);
