@@ -33,7 +33,7 @@ This Chrome extension streamlines the process of finding and booking concert tic
 
 ## :camera_flash: Demo video :camera_flash:
 
-https://githubusercontent.com/BastienBoymond/korea-concert-ticket-bot/main/assets/demo_video.mp4
+![Demo of the chrome extension](./assets/demo.gif)
 
 ## Credits
 
