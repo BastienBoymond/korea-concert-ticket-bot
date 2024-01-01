@@ -39,11 +39,11 @@ async function searchConcert() {
     if (!data) {
         return;
     }
-    await sleep(100);
+    await sleep(200);
     select_day(data.date.replaceAll("-", ""));
-    await sleep(100);
+    await sleep(200);
     select_time(formatTime(data.time));
-    await sleep(100);
+    await sleep(200);
     document.getElementsByClassName("reservationBtn")[0].click();
 }
 
