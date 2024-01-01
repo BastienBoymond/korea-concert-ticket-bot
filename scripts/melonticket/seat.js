@@ -40,7 +40,7 @@ async function findSeat() {
     let canvas = frame.document.getElementById("ez_canvas");
     let seat = canvas.getElementsByTagName("rect");
     console.log(seat);
-    await sleep(500);
+    await sleep(750);
     for (let i = 0; i < seat.length; i++) {
         let fillColor = seat[i].getAttribute("fill");
     
@@ -51,23 +51,45 @@ async function findSeat() {
 
             seat[i].dispatchEvent(clickEvent);
             frame.document.getElementById("nextTicketSelection").click();
-            return;
+            return true;
         }
     }
-    console.log("no Seat Found go next");
+    return false;
+}
+
+async function checkCaptchaFinish() {
+    if (document.getElementById("certification").style.display != "none") {
+        await sleep(1000);
+        checkCaptchaFinish();
+        return;
+    }
+    let frame = theFrame();
+    await sleep(500);
+    frame.document.getElementById("nextTicketSelection").click();
+    return;
+}
+
+async function reload() {
+    let frame = theFrame();
+    frame.document.getElementById("btnReloadSchedule").click();
+    await sleep(750);
 }
 
 async function searchSeat() {
     let concertId = getConcertId();
     let data = await get_stored_value(concertId);
-    console.log(data);
     await sleep(500);
     for (sec of data.section) {
         openEverySection();
         clickOnArea(sec);
-        await findSeat();
-
+        if (await findSeat()) {
+            checkCaptchaFinish();
+            return;
+        }
     }
+    reload();
+    await searchSeat();
+    
 }
 
 searchSeat();
