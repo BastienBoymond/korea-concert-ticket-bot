@@ -20,6 +20,8 @@ This Chrome extension streamlines the process of finding and booking concert tic
 > [!CAUTION]
 > Using this extension for automated booking may lead to a ban on the respective platforms. It is important to note that the developers of this extension are not responsible for any account bans or consequences that may arise from using the automated booking feature. Use at your own discretion.
 
+## Development
+
 ### Popup and Form
 - `form`: HTML, CSS, and JavaScript for the main popup form.
 - `interparkForm`, `melonticketForm`, `yes24Form`: Platform-specific registration forms.
@@ -31,7 +33,7 @@ This Chrome extension streamlines the process of finding and booking concert tic
 
 ## :camera_flash: Demo video :camera_flash:
 
-<video src="./assets/demo_video.mp4"/>
+githubusercontent.com/BastienBoymond/korea-concert-ticket-bot/main/assets/demo_video.mp4
 
 ## Credits
 
