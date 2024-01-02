@@ -32,11 +32,26 @@ function select_time(time) {
     return;
 }
 
+async function isPlaceOpen() {
+    let selector = document.getElementsByClassName("box_ticketing_process")[0];
+    
+    if (selector.style.display == "none") {
+        return false;
+    }
+    return true;
+}
+
 async function searchConcert() {
     let concertId = getConcertId();
     let data = await get_stored_value(concertId);
 
     if (!data) {
+        return;
+    }
+    if (!await isPlaceOpen()) {
+        console.log("not open");
+        await sleep(100);
+        searchConcert();
         return;
     }
     await sleep(200);

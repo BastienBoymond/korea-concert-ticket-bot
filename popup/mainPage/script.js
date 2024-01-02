@@ -1,4 +1,4 @@
-import { get_stored_value, store_value } from "../module/storage.js";
+import { delete_value, get_stored_value, store_value } from "../module/storage.js";
 
 let loadAutoBooking = async () => {
     let autoBooking = await get_stored_value("autoBooking");
@@ -95,7 +95,7 @@ function openBookingUrl(platform, concertId) {
 async function deleteConcertItem(index) {
     let listContainer = document.getElementById("list-booking");
     let autoBooking = await get_stored_value("autoBooking");
-
+    delete_value(autoBooking[index]["concert-id"]);
     // Remove the item from the array
     autoBooking.splice(index, 1);
 
