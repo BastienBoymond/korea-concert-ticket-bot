@@ -9,12 +9,10 @@
     "content_scripts": [
         {
             "matches": [
-                "http://ticket.yes24.com/Pages/English/",
-                "http://ticket.yes24.com/Pages/English/*",
-                "http://ticket.yes24.com/English/*",
-                "http://ticket.yes24.com/English"
+                "http://ticket.yes24.com/Pages/English/Sale/FnPerfSaleProcess.aspx",
+                "http://ticket.yes24.com/Pages/English/Sale/FnPerfSaleProcess.aspx*"
             ],
-            "js": ["scripts/yes24.js"]
+            "js": ["scripts/common/hourToPm.js", "scripts/common/storage.js", "scripts/common/sleep.js", "scripts/yes24/seat.js"]
         },
         {
             "matches": [

@@ -50,16 +50,32 @@ async function searchConcert() {
     }
     if (!await isPlaceOpen()) {
         console.log("not open");
-        await sleep(100);
+        await sleep(200);
         searchConcert();
         return;
     }
-    await sleep(200);
+    await sleep(500);
     select_day(data.date.replaceAll("-", ""));
-    await sleep(200);
+    await sleep(500);
     select_time(formatTime(data.time));
-    await sleep(200);
+    await sleep(500);
+
+    await sleep(5000);
+    
     document.getElementsByClassName("reservationBtn")[0].click();
+
+
+    console.log("clicked reservation");
+}
+
+function simulateMouseEvent(element, eventType) {
+    const event = new MouseEvent(eventType, {
+        bubbles: true,
+        cancelable: true,
+        isTrusted: true,
+    });
+
+    element.dispatchEvent(event);
 }
 
 searchConcert();

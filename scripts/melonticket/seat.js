@@ -75,10 +75,7 @@ async function reload() {
     await sleep(750);
 }
 
-async function searchSeat() {
-    let concertId = getConcertId();
-    let data = await get_stored_value(concertId);
-    await sleep(500);
+async function searchSeat(data) {
     for (sec of data.section) {
         openEverySection();
         clickOnArea(sec);
@@ -88,8 +85,15 @@ async function searchSeat() {
         }
     }
     reload();
-    await searchSeat();
-    
+    await searchSeat(data);
 }
 
-searchSeat();
+async function waitFirstLoad() {
+    let concertId = getConcertId();
+    let data = await get_stored_value(concertId);
+    await sleep(1000);
+    searchSeat(data);
+}
+
+
+waitFirstLoad();
