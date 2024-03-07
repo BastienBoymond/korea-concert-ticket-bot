@@ -6,6 +6,12 @@
     "permissions": [
         "storage"
     ],
+    "web_accessible_resources": [
+        {
+            "resources": ["inject.js"],
+            "matches": ["<all_urls>"]
+          }
+    ],
     "content_scripts": [
         {
             "matches": [

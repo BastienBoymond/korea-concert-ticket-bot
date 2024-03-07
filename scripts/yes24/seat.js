@@ -1,3 +1,5 @@
+let seatSelect = [];
+
 function getConcertId() {
     let url = window.location.href;
     let concertId = url.split("=")[1];
@@ -29,11 +31,26 @@ function theFrame() {
     return window.frames[0].document;
 }
 
-async function findSeat() {
-    console.log(document.getElementsByTagName("iframe"));
+function reload() {
     let frame = theFrame();
-    console.log(frame);
-    console.log(frame.getElementById("divSeatArray"));
+    frame.getElementsByName("maphall")[0].children[0].click();
+    findSeat();
+}
+
+
+function disableEndButton() {
+    const frame = theFrame();
+    frame.getElementsByClassName("btn")[0].children[1].children[0].removeAttribute("href");
+}
+
+function reactivateEndButton() {
+    let href = "javascript:ChoiceEnd();"
+    const frame = theFrame();
+    frame.getElementsByClassName("btn")[0].children[1].children[0].setAttribute("href", href);
+}
+
+async function getSeat() {
+    let frame = theFrame();
     let seatArray = frame.getElementById("divSeatArray").children;
     for (let i = 0; i < seatArray.length; i++) {
         let seat = seatArray[i];
@@ -41,31 +58,32 @@ async function findSeat() {
             seat.click();
             await sleep(200);
             clickOnArea(frame.getElementsByClassName("booking")[0]);
-            // execute code javascript:ChoiceEnd();
-            
-            return;
+            return true;
         }
     }
+    return false;
 }
 
-// function that create a click event 
-function clickOnArea(area) {
-    const event = new MouseEvent('click', {
-        view: window,
-        bubbles: true,
-        cancelable: true
-    });
+async function findSeat() {
+    disableEndButton();
+    console.log(document.getElementsByTagName("iframe"));
+    if (await getSeat()) {
+        reactivateEndButton();
+        return;
+    }
+    console.log("no seat");
+    await sleep(1000);
+    reload();
+    return;    
 }
 
 async function searchSeat() {
     let concertId = getConcertId();
     let data = await get_stored_value(concertId);
-    await sleep(500);
+    await sleep(1000);
     selectDate(data);
     await sleep(1000);
     findSeat();
 }
 
 searchSeat();
-
-console.log("Hello from the script");
