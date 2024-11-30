@@ -27,8 +27,8 @@ function clickOnArea(area) {
     let frame = theFrame();
     let section = frame.document.getElementsByClassName("area_tit");
     for (let i = 0; i < section.length; i++) {
-        console.log(section[i], area);
-        if (section[i].innerHTML.includes(area)) {
+        let reg = new RegExp(area + "\$","g");
+        if (section[i].innerHTML.match(reg)) {
             section[i].parentElement.click();
             return;
         }
